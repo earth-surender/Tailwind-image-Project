@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Fun Fun</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="icon" href="image/folder.png" type="image/png">
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="flex flex-col items-center justify-center p-1">
+        <div class="w-ct-1000 h-ct-1500 mt-5 bg-light-blue shadow-md flex flex-col rounded-2xl p-2">
+          
+            <div class="text-xl"><h1>การตั้งค่า POP UP กลาง</h1></div>
+            <div class="w-full mt-1 h-px bg-black mb-4"></div>
+
+            <div class="flex justify-between">
+                <div class="w-ct-300 ml-2">
+                    <div class="text-base"><p>รูปแบบ POP UP กลาง</p></div>
+
+                    <div class="flex shadow-md mt-2">
+                        <div class="w-ct-150 flex flex-col justify-center">
+                            <div id="image-preview-A" class="h-20 flex justify-center items-center text-xl bg-shade-green1">
+                                <h1 id="placeholder-text-A">A</h1>
+                            </div>
+                            <div id="image-preview-B" class="h-20 flex justify-center items-center text-xl bg-shade-green2">
+                                <h1 id="placeholder-text-B">B</h1>
+                            </div>
+                            <div id="image-preview-C" class="h-20 flex justify-center items-center text-xl bg-shade-green3">
+                                <h1 id="placeholder-text-C">C</h1>
+                            </div>
+                        </div>
+
+                        <div class="w-ct-220 flex flex-col justify-center bg-purple-600">
+                            <div id="image-preview-D" class="h-ct-120 flex justify-center items-center text-xl bg-shade-green4">
+                                <h1 id="placeholder-text-D">D</h1>
+                            </div>
+                            <div id="image-preview-E" class="h-ct-120 flex justify-center items-center text-xl bg-shade-green5">
+                                <h1 id="placeholder-text-E">E</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 flex justify-between">
+
+                        <div id="openModalButton" class="h-7 p-1 bg-green-button text-white text-sm flex justify-center items-center rounded-lg hover:bg-green-hv hover:cursor-pointer hover:shadow-green-box transform hover:scale-110 transition duration-600">
+                            <i class="fa-solid fa-eye"></i>&nbsp;ดูตัวอย่าง 
+                        </div>
+  
+                        <div class="h-7 p-1 bg-green-button text-white text-sm flex justify-center items-center rounded-lg hover:bg-green-hv hover:cursor-pointer hover:shadow-green-box transform hover:scale-110 transition duration-600">
+                            <i class="fa-solid fa-pen-to-square"></i>&nbsp;เลือกเทมเพลต
+                        </div>
+                    </div>
+    
+                </div>
+                
+                <div class="w-ct-600 flex flex-col justify-center items-center">
+                    <div class="text-base w-ct-600"><p>เพิ่มรูปภาพตามตำแหน่งตัวอักษร</p></div>
+
+                    <div class="mt-2 w-ct-590 h-64 bg-shine-blue rounded-xl shadow-md flex">
+                        <div class="h-56 w-ct-500 flex flex-col"> 
+                            <div class="w-ct-500 h-56">   
+                                <div class="h-32 p-2 flex justify-between">
+            
+                                    <div>
+                                        <div class="text-2xl text-button-blue"><p>A</p></div>
+                                        <div class="text-base text-gray-700"><p>รูปภาพ</p></div>
+                                        <div class="text-xs text-gray-700"><p>ขนาดรูป</p></div>
+                                        <div id="image-size-A" class="text-xs text-gray-700"></div>
+                                    </div>
+                                    
+                                    <div class="h-32 w-ct-388 flex items-center justify-end">
+                                        <div id="drop-zone-A" class="w-60 h-28 bg-light-blue border-2 border-dashed border-gray-400 rounded-2xl flex flex-col items-center justify-center text-gray-400">
+                                            <p id="placeholder-text-A">คลิกเพื่อเปลี่ยนไฟล์</p>
+                                            <div id="select-file-text-A" class="w-28 h-8 bg-button-blue text-white mt-2 rounded-lg flex items-center justify-center hover:bg-blue-hv hover:cursor-pointer hover:shadow-blue-box transform hover:scale-110 transition duration-600">
+                                                <p>+ &nbsp; เลือกไฟล์</p>
+                                            </div>
+                                        </div>
+                
+                                        <div class="h-32 w-10 flex items-end justify-center space-x-2">
+                                            <input type="checkbox" id="hover-checkbox" class="peer hidden">
+                                            <label for="hover-checkbox" class="w-5 h-5 mb-2 bg-gray-200 border border-gray-700 rounded-md flex items-center justify-center hover:bg-gray-300 peer-checked:bg-button-blue peer-checked:text-white">
+                                                <i class="fa-solid fa-check"></i>
+                                            </label>
+                                        </div>
+                
+                                        <div class="h-32 w-10 flex items-end justify-center space-x-2">
+                                            <div id="delete-A" class="w-7 h-7 mb-2 bg-red-600 rounded-lg flex items-center justify-center text-white hover:bg-red-hv hover:cursor-pointer hover:shadow-red-box transform hover:scale-110 transition duration-600">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                </div>
+                            </div>
+            
+                            <div class="flex items-center justify-end w-ct-500 mt-2">
+                                <p>ขนาดไฟล์ 2 MB</p>
+                            </div>
+            
+                            <div class="w-ct-500 flex flex-col">
+                                <div class="h-14 p-2 flex justify-between items-center">
+                                    <div class="h-14 flex items-center">
+                                        <label for="image-url-A" class="text-xl text-gray-700"><p>Link</p></label>
+                                    </div>
+                                    <div class="h-14 w-ct-388 flex items-center justify-end">
+                                        <div class="flex justify-center">
+                                            <input type="text" id="image-url-A" maxlength="255" class="rounded-lg p-2 h-9 w-ct-320 border border-gray-400 focus:outline-none">
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="h-10 w-ct-500 flex items-center justify-end">
+                                    <div id="char-count-A" class=" text-gray-500">0/255 ตัวอักษร</div>
+                                </div>
+            
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 w-ct-590 h-64 bg-shine-blue rounded-xl shadow-md flex">
+                        <div class="h-56 w-ct-500 flex flex-col"> 
+                            <div class="w-ct-500 h-56">   
+                                <div class="h-32 p-2 flex justify-between">
+            
+                                    <div>
+                                        <div class="text-2xl text-button-blue"><p>B</p></div>
+                                        <div class="text-base text-gray-700"><p>รูปภาพ</p></div>
+                                        <div class="text-xs text-gray-700"><p>ขนาดรูป</p></div>
+                                        <div id="image-size-B" class="text-xs text-gray-700"></div>
+                                    </div>
+                                    
+                                    <div class="h-32 w-ct-388 flex items-center justify-end">
+                                        <div id="drop-zone-B" class="w-60 h-28 bg-light-blue border-2 border-dashed border-gray-400 rounded-2xl flex flex-col items-center justify-center text-gray-400">
+                                            <div><p>คลิกเพื่อเปลี่ยนไฟล์</p></div>
+                                            <div id="select-file-text-B" class="w-28 h-8 bg-button-blue text-white mt-2 rounded-lg flex items-center justify-center hover:bg-blue-hv hover:cursor-pointer hover:shadow-blue-box transform hover:scale-110 transition duration-600">
+                                                <p>+ &nbsp; เลือกไฟล์</p>
+                                            </div>
+                                        </div>
+                
+                                        <div class="h-32 w-10 flex items-end justify-center space-x-2">
+                                            <input type="checkbox" id="hover-checkbox" class="peer hidden">
+                                            <label for="hover-checkbox" class="w-5 h-5 mb-2 bg-gray-200 border border-gray-700 rounded-md flex items-center justify-center hover:bg-gray-300 peer-checked:bg-button-blue peer-checked:text-white">
+                                                <i class="fa-solid fa-check"></i>
+                                            </label>
+                                        </div>
+                
+                                        <div class="h-32 w-10 flex items-end justify-center space-x-2">
+                                            <div id="delete-B" class="w-7 h-7 mb-2 bg-red-600 rounded-lg flex items-center justify-center text-white hover:bg-red-hv hover:cursor-pointer hover:shadow-red-box transform hover:scale-110 transition duration-600">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                </div>
+                            </div>
+            
+                            <div class="flex items-center justify-end w-ct-500 mt-2">
+                                <p>ขนาดไฟล์ 2 MB</p>
+                            </div>
+            
+                            <div class="w-ct-500 flex flex-col">
+                                <div class="h-14 p-2 flex justify-between items-center">
+                                    <div class="h-14 flex items-center">
+                                        <label for="image-url-B" class="text-xl text-gray-700"><p>Link</p></label>
+                                    </div>
+                                    <div class="h-14 w-ct-388 flex items-center justify-end">
+                                        <div class="flex justify-center">
+                                            <input type="text" id="image-url-B" maxlength="255" class="rounded-lg p-2 h-9 w-ct-320 border border-gray-400 focus:outline-none">
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="h-10 w-ct-500 flex items-center justify-end">
+                                    <div id="char-count-B" class=" text-gray-500"><p> 0/255 ตัวอักษร</p></div>
+                                </div>
+            
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 w-ct-590 h-64 bg-shine-blue rounded-xl shadow-md flex">
+                        <div class="h-56 w-ct-500 flex flex-col"> 
+                            <div class="w-ct-500 h-56">   
+                                <div class="h-32 p-2 flex justify-between">
+            
+                                    <div>
+                                        <div class="text-2xl text-button-blue"><p>C</p></div>
+                                        <div class="text-base text-gray-700"><p>รูปภาพ</p></div>
+                                        <div class="text-xs text-gray-700"><p>ขนาดรูป</p></div>
+                                        <div id="image-size-C" class="text-xs text-gray-700"></div>
+                                    </div>
+                                    
+                                    <div class="h-32 w-ct-388 flex items-center justify-end">
+                                        <div id="drop-zone-C" class="w-60 h-28 bg-light-blue border-2 border-dashed border-gray-400 rounded-2xl flex flex-col items-center justify-center text-gray-400">
+                                            <div><p>คลิกเพื่อเปลี่ยนไฟล์</p></div>
+                                            <div id="select-file-text-C" class="w-28 h-8 bg-button-blue text-white mt-2 rounded-lg flex items-center justify-center  hover:bg-blue-hv hover:cursor-pointer hover:shadow-blue-box transform hover:scale-110 transition duration-600">
+                                                <p>+ &nbsp; เลือกไฟล์</p>
+                                            </div>
+                                        </div>
+                
+                                        <div class="h-32 w-10 flex items-end justify-center space-x-2">
+                                            <input type="checkbox" id="hover-checkbox" class="peer hidden">
+                                            <label for="hover-checkbox" class="w-5 h-5 mb-2 bg-gray-200 border border-gray-700 rounded-md flex items-center justify-center hover:bg-gray-300 peer-checked:bg-button-blue peer-checked:text-white">
+                                                <i class="fa-solid fa-check"></i>
+                                            </label>
+                                        </div>
+                
+                                        <div class="h-32 w-10 flex items-end justify-center space-x-2">
+                                            <div id="delete-C" class="w-7 h-7 mb-2 bg-red-600 rounded-lg flex items-center justify-center text-white hover:bg-red-hv hover:cursor-pointer hover:shadow-red-box transform hover:scale-110 transition duration-600">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                </div>
+                            </div>
+            
+                            <div class="flex items-center justify-end w-ct-500 mt-2">
+                                <p>ขนาดไฟล์ 2 MB</p>
+                            </div>
+            
+                            <div class="w-ct-500 flex flex-col">
+                                <div class="h-14 p-2 flex justify-between items-center">
+                                    <div class="h-14 flex items-center">
+                                        <label for="image-url-C" class="text-xl text-gray-700"><p>Link</p></label>
+                                    </div>
+                                    <div class="h-14 w-ct-388 flex items-center justify-end">
+                                        <div class="flex justify-center">
+                                            <input type="text" id="image-url-C" maxlength="255" class="rounded-lg p-2 h-9 w-ct-320 border border-gray-400 focus:outline-none">
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="h-10 w-ct-500 flex items-center justify-end">
+                                    <div id="char-count-C"  class=" text-gray-500"><p> 0/255 ตัวอักษร</p></div>
+                                </div>
+            
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 w-ct-590 h-64 bg-shine-blue rounded-xl shadow-md flex">
+                        <div class="h-56 w-ct-500 flex flex-col"> 
+                            <div class="w-ct-500 h-56">   
+                                <div class="h-32 p-2 flex justify-between">
+            
+                                    <div>
+                                        <div class="text-2xl text-button-blue"><p>D</p></div>
+                                        <div class="text-base text-gray-700"><p>รูปภาพ</p></div>
+                                        <div class="text-xs text-gray-700"><p>ขนาดรูป</p></div>
+                                        <div id="image-size-D" class="text-xs text-gray-700"></div>
+                                    </div>
+                                    
+                                    <div class="h-32 w-ct-388 flex items-center justify-end">
+                                        <div id="drop-zone-D" class="w-60 h-28 bg-light-blue border-2 border-dashed border-gray-400 rounded-2xl flex flex-col items-center justify-center text-gray-400">
+                                            <div><p>คลิกเพื่อเปลี่ยนไฟล์</p></div>
+                                            <div id="select-file-text-D" class="w-28 h-8 bg-button-blue text-white mt-2 rounded-lg flex items-center justify-center hover:bg-blue-hv hover:cursor-pointer hover:shadow-blue-box transform hover:scale-110 transition duration-600">
+                                                <p>+ &nbsp; เลือกไฟล์</p>
+                                            </div>
+                                        </div>
+                
+                                        <div class="h-32 w-10 flex items-end justify-center space-x-2">
+                                            <input type="checkbox" id="hover-checkbox" class="peer hidden">
+                                            <label for="hover-checkbox" class="w-5 h-5 mb-2 bg-gray-200 border border-gray-700 rounded-md flex items-center justify-center hover:bg-gray-300 peer-checked:bg-button-blue peer-checked:text-white">
+                                                <i class="fa-solid fa-check"></i>
+                                            </label>
+                                        </div>
+                
+                                        <div class="h-32 w-10 flex items-end justify-center space-x-2">
+                                            <div id="delete-D" class="w-7 h-7 mb-2 bg-red-600 rounded-lg flex items-center justify-center text-white hover:bg-red-hv hover:cursor-pointer hover:shadow-red-box transform hover:scale-110 transition duration-600">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                </div>
+                            </div>
+            
+                            <div class="flex items-center justify-end w-ct-500 mt-2">
+                                <p>ขนาดไฟล์ 2 MB</p>
+                            </div>
+            
+                            <div class="w-ct-500 flex flex-col">
+                                <div class="h-14 p-2 flex justify-between items-center">
+                                    <div class="h-14 flex items-center">
+                                        <label for="image-url-D" class="text-xl text-gray-700"><p>Link</p></label>
+                                    </div>
+                                    <div class="h-14 w-ct-388 flex items-center justify-end">
+                                        <div class="flex justify-center">
+                                            <input type="text" id="image-url-D" class="rounded-lg p-2 h-9 w-ct-320 border border-gray-400 focus:outline-none">
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="h-10 w-ct-500 flex items-center justify-end">
+                                    <div id="char-count-D" class=" text-gray-500"><p>0/255 ตัวอักษร </p></div>
+                                </div>
+            
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 w-ct-590 h-64 bg-shine-blue rounded-xl shadow-md flex">
+                        <div class="h-56 w-ct-500 flex flex-col"> 
+                            <div class="w-ct-500 h-56">   
+                                <div class="h-32 p-2 flex justify-between">
+            
+                                    <div>
+                                        <div class="text-2xl text-button-blue"><p>E</p></div>
+                                        <div class="text-base text-gray-700"><p>รูปภาพ</p></div>
+                                        <div class="text-xs text-gray-700"><p>ขนาดรูป</p></div>
+                                        <div id="image-size-E" class="text-xs text-gray-700"></div>
+                                    </div>
+                                    
+                                    <div class="h-32 w-ct-388 flex items-center justify-end">
+                                        <div id="drop-zone-E" class="w-60 h-28 bg-light-blue border-2 border-dashed border-gray-400 rounded-2xl flex flex-col items-center justify-center text-gray-400">
+                                            <div><p>คลิกเพื่อเปลี่ยนไฟล์</p></div>
+                                            <div id="select-file-text-E" class="w-28 h-8 bg-button-blue text-white mt-2 rounded-lg flex items-center justify-center hover:bg-blue-hv hover:cursor-pointer hover:shadow-blue-box transform hover:scale-110 transition duration-600">
+                                                <p>+ &nbsp; เลือกไฟล์</p>
+                                            </div>
+                                        </div>
+                
+                                        <div class="h-32 w-10 flex items-end justify-center space-x-2">
+                                            <input type="checkbox" id="hover-checkbox" class="peer hidden">
+                                            <label for="hover-checkbox" class="w-5 h-5 mb-2 bg-gray-200 border border-gray-700 rounded-md flex items-center justify-center hover:bg-gray-300 peer-checked:bg-button-blue peer-checked:text-white">
+                                                <i class="fa-solid fa-check"></i>
+                                            </label>
+                                        </div>
+                
+                                        <div class="h-32 w-10 flex items-end justify-center space-x-2">
+                                            <div id="delete-E" class="w-7 h-7 mb-2 bg-red-600 rounded-lg flex items-center justify-center text-white hover:bg-red-hv hover:cursor-pointer hover:shadow-red-box transform hover:scale-110 transition duration-600">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                </div>
+                            </div>
+            
+                            <div class="flex items-center justify-end w-ct-500 mt-2">
+                                <p>ขนาดไฟล์ 2 MB</p>
+                            </div>
+            
+                            <div class="w-ct-500 flex flex-col">
+                                <div class="h-14 p-2 flex justify-between items-center">
+                                    <div class="h-14 flex items-center">
+                                        <label for="image-url-E" class="text-xl text-gray-700"><p>Link</p></label>
+                                    </div>
+                                    <div class="h-14 w-ct-388 flex items-center justify-end">
+                                        <div class="flex justify-center">
+                                            <input type="text" id="image-url-E" class="rounded-lg p-2 h-9 w-ct-320 border border-gray-400 focus:outline-none">
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="h-10 w-ct-500 flex items-center justify-end">
+                                    <div id="char-count-E" class=" text-gray-500"><p> 0/255 ตัวอักษร</p></div>
+                                </div>
+            
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+
+                <div class="w-full h-28 flex items-center justify-end">
+                    <div class="w-10 h-10 bg-button-blue rounded-3xl flex items-center justify-center text-white border-2 border-bubble-blue hover:bg-blue-hv hover:cursor-pointer hover:shadow-blue-box transform hover:scale-110 transition duration-600">
+                        <p>OK</p>
+                    </div>
+
+                </div>
+
+            </div>
+        <div class="w-ct-1000 h-10 mt-5 flex items-center justify-end">
+            <div  class="text-green-button text-xl hover:cursor-pointer"><i class="fa-solid fa-backward"></i><span class="text-gray-800">&nbsp;กลับ</span></div>
+        </div>
+    </div>
+
+<div id="modal" class="hidden-modal fixed inset-0 flex flex-col items-center justify-center bg-gray-900 bg-opacity-50"> 
+    <div class="h-ct-600 w-ct-900 flex shadow-md mt-2 bg-red-700">
+      <div class="w-ct-400 h-ct-600 flex flex-col justify-center bg-yellow-500">
+        <div id="image-preview-A-modal" class="modal-image-preview h-ct-200 flex justify-center items-center text-xl bg-shade-green1">
+          <h1 id="placeholder-text-A-modal">A</h1> 
+        </div>
+        <div id="image-preview-B-modal" class="modal-image-preview h-ct-200 flex justify-center items-center text-xl bg-shade-green2">
+          <h1 id="placeholder-text-B-modal">B</h1> 
+        </div>
+        <div id="image-preview-C-modal" class="modal-image-preview h-ct-200 flex justify-center items-center text-xl bg-shade-green3">
+          <h1 id="placeholder-text-C-modal">C</h1> 
+        </div>
+      </div>
+      <div class="w-ct-500 h-ct-600 flex flex-col justify-center bg-purple-600">
+        <div id="image-preview-D-modal" class="modal-image-preview h-ct-300 flex justify-center items-center text-xl bg-shade-green4">
+          <h1 id="placeholder-text-D-modal">D</h1>
+        </div>
+        <div id="image-preview-E-modal" class="modal-image-preview h-ct-300 flex justify-center items-center text-xl bg-shade-green5">
+          <h1 id="placeholder-text-E-modal">E</h1>
+        </div>
+      </div>
+    </div>
+    <button id="closeModalBtn" class="px-4 py-2 mt-2 bg-blue-500 text-white rounded-lg hover:bg-blue-hv hover:cursor-pointer hover:shadow-blue-box transform hover:scale-110 transition duration-600">ปิด</button> 
+  </div>
+  
+    <script src="script.js"></script>
+</body>
+</html>
