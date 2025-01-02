@@ -12,7 +12,7 @@ function setupImagePreview(id) {
   const fileInput = document.createElement("input");
   fileInput.type = "file";
   fileInput.accept = "image/*";
-  fileInput.style.display = "none";
+  fileInput.style.display = "";
   document.body.appendChild(fileInput);
 
   selectFileText.addEventListener("click", () => fileInput.click());
