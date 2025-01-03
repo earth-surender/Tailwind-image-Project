@@ -63,16 +63,19 @@ function setupImagePreview(id) {
   dropZone.addEventListener("dragover", (event) => {
     event.preventDefault();
     dropZone.classList.add("bg-blue-200", "shadow-lg", "border-white");
+    placeholderText.style.color = "white";
   });
 
   dropZone.addEventListener("dragleave", (event) => {
     event.preventDefault();
     dropZone.classList.remove("bg-blue-200", "shadow-lg", "border-white");
+    placeholderText.style.color = "";
   });
 
   dropZone.addEventListener("drop", (event) => {
     event.preventDefault();
     dropZone.classList.remove("bg-blue-200", "shadow-lg", "border-white");
+    placeholderText.style.color = "";
 
     const file = event.dataTransfer.files[0];
     if (file && file.type.startsWith("image/")) {
