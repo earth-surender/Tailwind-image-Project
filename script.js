@@ -11,6 +11,7 @@ function setupImagePreview(id) {
   const fileSize = document.getElementById(`file-size-${id}`); // ข้อความแสดงขนาดไฟล์
   const imageUrlInput = document.getElementById(`image-url-${id}`); // input สำหรับ image URL
   const deleteBtn = document.getElementById(`delete-${id}`);
+  const checkboxDel = document.getElementById(`check-del-${id}`);
 
   dropZone.addEventListener("click", () => fileInput.click());
 
@@ -140,6 +141,8 @@ function setupImagePreview(id) {
     fileInput.value = '';
     charCount.textContent = '0/255 ตัวอักษร';
     imageSize.textContent = '';
+    checkboxDel.textContent = '<i class="fa-solid fa-check"></i>';
+    checkboxDel.style.backgroungColor = "#67a9f8";
   });
 }
 
