@@ -1,35 +1,40 @@
 #image-preview-A {
     width: 150px; /* กำหนดขนาดตามต้องการ */
     height: 80px;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
 }
 
 #image-preview-B {
     width: 150px; /* กำหนดขนาดตามต้องการ */
     height: 80px;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
 }
 
 #image-preview-C {
     width: 150px; /* กำหนดขนาดตามต้องการ */
     height: 80px;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
 }
 
 #image-preview-D {
     width: 170px; /* กำหนดขนาดตามต้องการ */
     height: 120px;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
 }
 
 #image-preview-E {
     width: 170px; /* กำหนดขนาดตามต้องการ */
     height: 120px;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
 }
 
