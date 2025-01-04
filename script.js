@@ -96,9 +96,10 @@ function setupImagePreview(id) {
   deleteBtn.addEventListener("click", () => {
     imagePreview.style.backgroundImage = "";
     modalImagePreview.style.backgroundImage = ""; // ลบภาพใน modal
+    modalImagePreview.style.backgroundColor = "";
     placeholderText.style.display = "flex";
     modalPlaceholderText.style.display = "flex";
-    placeholderDropText.textContent = "วางไฟล์ที่นี่หรือคลิกเพื่อเลือกไฟล์";
+    placeholderDropText.textContent = "คลิกเพื่อเลือกไฟล์";
     fileInput.value = '';
     charCount.textContent = '';
     imageSize.textContent = '';
