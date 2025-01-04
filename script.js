@@ -17,7 +17,7 @@ function setupImagePreview(id) {
     const file = event.target.files[0];
     if (file && file.type.startsWith("image/")) {
       const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2); // แปลงขนาดไฟล์เป็น MB
-      fileSize.textContent = `ขนาดไฟล์: ${fileSizeMB} MB`; // แสดงขนาดไฟล์
+      fileSize.textContent = `ขนาดไฟล์ ${fileSizeMB} MB`; // แสดงขนาดไฟล์
 
       if (file.size > 2 * 1024 * 1024) {
         alert("ไฟล์มีขนาดใหญ่เกิน 2MB");
