@@ -130,14 +130,16 @@ function setupImagePreview(id) {
   deleteBtn.addEventListener("click", () => {
     imagePreview.style.backgroundImage = "";
     modalImagePreview.style.backgroundImage = ""; // ลบภาพใน modal
+    imagePreview.style.backgroundColor = "";
+    modalImagePreview.style.backgroundColor = "";
     placeholderText.style.display = "flex";
     modalPlaceholderText.style.display = "flex";
     placeholderDropText.textContent = "คลิกเพื่อเลือกไฟล์";
     fileSize.textContent = ""; // ลบข้อความขนาดไฟล์เมื่อกดลบ
     imageUrlInput.value = "";
     fileInput.value = '';
-    charCount.textContent = '';
-    imageSize.textContent = '';
+    charCount.textContent = '0/255 ตัวอักษร';
+    imageSize.textContent = 'ขนาดไฟล์ 0 MB';
   });
 }
 
