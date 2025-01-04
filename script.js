@@ -2,6 +2,7 @@ function setupImagePreview(id) {
   const dropZone = document.getElementById(`drop-zone-${id}`);
   const fileInput = document.getElementById(`fileInput-${id}`);
   const imagePreview = document.getElementById(`image-preview-${id}`);
+  const placeholderDropText = document.getElementById(`placeholder-drop-${id}`); // เปลี่ยน id เป็น placeholder-drop
   const placeholderText = document.getElementById(`placeholder-text-${id}`);
   const charCount = document.getElementById(`char-count-${id}`);
   const imageSize = document.getElementById(`image-size-${id}`);
@@ -34,22 +35,22 @@ function setupImagePreview(id) {
   dropZone.addEventListener("dragover", (event) => {
     event.preventDefault();
     dropZone.classList.add("bg-blue-200", "shadow-lg", "border-white");
-    placeholderText.textContent = "ปล่อยไฟล์เพื่ออัปโหลด";
-    placeholderText.style.color = "white";
+    placeholderDropText.textContent = "ปล่อยไฟล์เพื่ออัปโหลด"; // เปลี่ยนคำเมื่อมีการลากไฟล์เข้ามา
+    placeholderDropText.style.color = "white"; // เปลี่ยนสีตัวหนังสือเป็นสีขาว
   });
 
   dropZone.addEventListener("dragleave", (event) => {
     event.preventDefault();
     dropZone.classList.remove("bg-blue-200", "shadow-lg", "border-white");
-    placeholderText.textContent = "";
-    placeholderText.style.color = "";
+    placeholderDropText.textContent = "วางไฟล์ที่นี่หรือคลิกเพื่อเลือกไฟล์"; // กลับสู่คำเดิมเมื่อออกจาก drop zone
+    placeholderDropText.style.color = ""; // กลับสู่สีตัวหนังสือเดิม
   });
 
   dropZone.addEventListener("drop", (event) => {
     event.preventDefault();
     dropZone.classList.remove("bg-blue-200", "shadow-lg", "border-white");
-    placeholderText.textContent = "";
-    placeholderText.style.color = "";
+    placeholderDropText.textContent = "วางไฟล์ที่นี่หรือคลิกเพื่อเลือกไฟล์"; // กลับสู่คำเดิมหลังจากลากไฟล์ลง
+    placeholderDropText.style.color = ""; // กลับสู่สีตัวหนังสือเดิม
 
     const file = event.dataTransfer.files[0];
     if (file && file.type.startsWith("image/")) {
@@ -75,6 +76,7 @@ function setupImagePreview(id) {
   deleteBtn.addEventListener("click", () => {
     imagePreview.style.backgroundImage = "";
     placeholderText.style.display = "flex";
+    placeholderDropText.textContent = "วางไฟล์ที่นี่หรือคลิกเพื่อเลือกไฟล์"; // กลับสู่คำเดิมเมื่อกดลบ
     fileInput.value = ''; // ล้างไฟล์ที่เลือก
     charCount.textContent = ''; // ล้างจำนวนตัวอักษร
     imageSize.textContent = ''; // ล้างขนาดของภาพ
