@@ -95,6 +95,7 @@ function setupImagePreview(id) {
 
   deleteBtn.addEventListener("click", () => {
     imagePreview.style.backgroundImage = "";
+    imagePreview.style.backgroundColor = "";
     modalImagePreview.style.backgroundImage = ""; // ลบภาพใน modal
     modalImagePreview.style.backgroundColor = "";
     placeholderText.style.display = "flex";
