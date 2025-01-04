@@ -142,7 +142,7 @@ function setupImagePreview(id) {
     charCount.textContent = '0/255 ตัวอักษร';
     imageSize.textContent = '';
     checkboxDel.innerHTML = '<i class="fa-solid fa-check"></i>';
-    checkboxDel.style.backgroungColor = "#67a9f8";
+    checkboxDel.style.backgroundColor = "#67a9f8";
   });
 }
 
