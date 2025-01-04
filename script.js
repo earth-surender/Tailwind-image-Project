@@ -18,7 +18,7 @@ function setupImagePreview(id) {
 fileInput.addEventListener("change", (event) => { 
   const file = event.target.files[0]; 
   if (!file.type.startsWith("image/")) { 
-    alert("ไฟล์ไม่ถูกต้อง"); 
+    alert("!ไฟล์ไม่ถูกต้อง"); 
     return; 
   }
   
