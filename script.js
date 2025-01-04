@@ -42,14 +42,14 @@ function setupImagePreview(id) {
   dropZone.addEventListener("dragleave", (event) => {
     event.preventDefault();
     dropZone.classList.remove("bg-blue-200", "shadow-lg", "border-white");
-    placeholderDropText.textContent = "วางไฟล์ที่นี่หรือคลิกเพื่อเลือกไฟล์"; // กลับสู่คำเดิมเมื่อออกจาก drop zone
+    placeholderDropText.textContent = ""; // กลับสู่คำเดิมเมื่อออกจาก drop zone
     placeholderDropText.style.color = ""; // กลับสู่สีตัวหนังสือเดิม
   });
 
   dropZone.addEventListener("drop", (event) => {
     event.preventDefault();
     dropZone.classList.remove("bg-blue-200", "shadow-lg", "border-white");
-    placeholderDropText.textContent = "วางไฟล์ที่นี่หรือคลิกเพื่อเลือกไฟล์"; // กลับสู่คำเดิมหลังจากลากไฟล์ลง
+    placeholderDropText.textContent = "คลิกเพื่อเลือกไฟล์"; // กลับสู่คำเดิมหลังจากลากไฟล์ลง
     placeholderDropText.style.color = ""; // กลับสู่สีตัวหนังสือเดิม
 
     const file = event.dataTransfer.files[0];
