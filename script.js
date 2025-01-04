@@ -139,7 +139,7 @@ function setupImagePreview(id) {
     imageUrlInput.value = "";
     fileInput.value = '';
     charCount.textContent = '0/255 ตัวอักษร';
-    imageSize.textContent = 'ขนาดไฟล์ 0 MB';
+    imageSize.textContent = '';
   });
 }
 
