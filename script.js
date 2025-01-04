@@ -2,8 +2,10 @@ function setupImagePreview(id) {
   const dropZone = document.getElementById(`drop-zone-${id}`);
   const fileInput = document.getElementById(`fileInput-${id}`);
   const imagePreview = document.getElementById(`image-preview-${id}`);
-  const placeholderDropText = document.getElementById(`placeholder-drop-${id}`); // เปลี่ยน id เป็น placeholder-drop
+  const placeholderDropText = document.getElementById(`placeholder-drop-${id}`);
   const placeholderText = document.getElementById(`placeholder-text-${id}`);
+  const modalImagePreview = document.getElementById(`image-preview-${id}-modal`);
+  const modalPlaceholderText = document.getElementById(`placeholder-text-${id}-modal`);
   const charCount = document.getElementById(`char-count-${id}`);
   const imageSize = document.getElementById(`image-size-${id}`);
   const deleteBtn = document.getElementById(`delete-${id}`);
@@ -22,8 +24,15 @@ function setupImagePreview(id) {
         const img = new Image();
         img.onload = () => {
           imagePreview.style.backgroundImage = `url(${e.target.result})`;
-          imagePreview.style.backgroundSize = "cover";
+          imagePreview.style.backgroundSize = "contain";
+          imagePreview.style.backgroundRepeat = "no-repeat";
+          
+          modalImagePreview.style.backgroundImage = `url(${e.target.result})`; // แสดงภาพใน modal
+          modalImagePreview.style.backgroundSize = "contain";
+          modalImagePreview.style.backgroundRepeat = "no-repeat";
+          
           placeholderText.style.display = "none";
+          modalPlaceholderText.style.display = "none";
           imageSize.textContent = `ขนาดภาพ: ${img.width}px x ${img.height}px`; // แสดงขนาดภาพในพิกเซล
         };
         img.src = e.target.result;
@@ -35,22 +44,22 @@ function setupImagePreview(id) {
   dropZone.addEventListener("dragover", (event) => {
     event.preventDefault();
     dropZone.classList.add("bg-blue-200", "shadow-lg", "border-white");
-    placeholderDropText.textContent = "ปล่อยไฟล์เพื่ออัปโหลด"; // เปลี่ยนคำเมื่อมีการลากไฟล์เข้ามา
-    placeholderDropText.style.color = "white"; // เปลี่ยนสีตัวหนังสือเป็นสีขาว
+    placeholderDropText.textContent = "ปล่อยไฟล์เพื่ออัปโหลด";
+    placeholderDropText.style.color = "white";
   });
 
   dropZone.addEventListener("dragleave", (event) => {
     event.preventDefault();
     dropZone.classList.remove("bg-blue-200", "shadow-lg", "border-white");
-    placeholderDropText.textContent = "คลิกเพื่อเลือกไฟล์"; // กลับสู่คำเดิมเมื่อออกจาก drop zone
-    placeholderDropText.style.color = ""; // กลับสู่สีตัวหนังสือเดิม
+    placeholderDropText.textContent = "คลิกเพื่อเลือกไฟล์";
+    placeholderDropText.style.color = "";
   });
 
   dropZone.addEventListener("drop", (event) => {
     event.preventDefault();
     dropZone.classList.remove("bg-blue-200", "shadow-lg", "border-white");
-    placeholderDropText.textContent = "คลิกเพื่อเลือกไฟล์"; // กลับสู่คำเดิมหลังจากลากไฟล์ลง
-    placeholderDropText.style.color = ""; // กลับสู่สีตัวหนังสือเดิม
+    placeholderDropText.textContent = "คลิกเพื่อเลือกไฟล์";
+    placeholderDropText.style.color = "";
 
     const file = event.dataTransfer.files[0];
     if (file && file.type.startsWith("image/")) {
@@ -63,8 +72,13 @@ function setupImagePreview(id) {
         const img = new Image();
         img.onload = () => {
           imagePreview.style.backgroundImage = `url(${e.target.result})`;
-          imagePreview.style.backgroundSize = "cover";
+          imagePreview.style.backgroundSize = "contain";
+          imagePreview.style.backgroundRepeat = "no-repeat";
+          modalImagePreview.style.backgroundImage = `url(${e.target.result})`; // แสดงภาพใน modal
+          modalImagePreview.style.backgroundSize = "contain";
+          modalImagePreview.style.backgroundRepeat = "no-repeat";
           placeholderText.style.display = "none";
+          modalPlaceholderText.style.display = "none";
           imageSize.textContent = `ขนาดภาพ: ${img.width}px x ${img.height}px`; // แสดงขนาดภาพในพิกเซล
         };
         img.src = e.target.result;
@@ -75,23 +89,23 @@ function setupImagePreview(id) {
 
   deleteBtn.addEventListener("click", () => {
     imagePreview.style.backgroundImage = "";
+    modalImagePreview.style.backgroundImage = ""; // ลบภาพใน modal
     placeholderText.style.display = "flex";
-    placeholderDropText.textContent = "วางไฟล์ที่นี่หรือคลิกเพื่อเลือกไฟล์"; // กลับสู่คำเดิมเมื่อกดลบ
-    fileInput.value = ''; // ล้างไฟล์ที่เลือก
-    charCount.textContent = ''; // ล้างจำนวนตัวอักษร
-    imageSize.textContent = ''; // ล้างขนาดของภาพ
+    modalPlaceholderText.style.display = "flex";
+    placeholderDropText.textContent = "วางไฟล์ที่นี่หรือคลิกเพื่อเลือกไฟล์";
+    fileInput.value = '';
+    charCount.textContent = '';
+    imageSize.textContent = '';
   });
 
-  // เพิ่มการนับตัวอักษรในลิงก์
   fileInput.addEventListener("input", (event) => {
     const imageUrl = event.target.value;
-    charCount.textContent = `จำนวนตัวอักษร: ${imageUrl.length}`; // นับจำนวนตัวอักษรในลิงก์
+    charCount.textContent = `จำนวนตัวอักษร: ${imageUrl.length}`;
   });
 }
 
 // เรียกใช้ฟังก์ชันสำหรับแต่ละส่วน
 ["A", "B", "C", "D", "E"].forEach((id) => setupImagePreview(id));
-
 
 document.addEventListener('DOMContentLoaded', function () {
   const modal = document.getElementById('modal');
