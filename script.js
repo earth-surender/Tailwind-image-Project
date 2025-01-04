@@ -1,21 +1,13 @@
 function setupImagePreview(id) {
+  const dropZone = document.getElementById(`drop-zone-${id}`);
+  const fileInput = document.getElementById(`fileInput-${id}`);
   const imagePreview = document.getElementById(`image-preview-${id}`);
   const placeholderText = document.getElementById(`placeholder-text-${id}`);
-  const selectFileText = document.getElementById(`select-file-text-${id}`);
-  const imageSize = document.getElementById(`image-size-${id}`);
-  const dropZone = document.getElementById(`drop-zone-${id}`);
-  const modalImagePreview = document.getElementById(`image-preview-${id}-modal`);
-  const deleteBtn = document.getElementById(`delete-${id}`);
-  const imageUrlInput = document.getElementById(`image-url-${id}`);
   const charCount = document.getElementById(`char-count-${id}`);
+  const imageSize = document.getElementById(`image-size-${id}`);
+  const deleteBtn = document.getElementById(`delete-${id}`);
 
-  const fileInput = document.createElement("input");
-  fileInput.type = "file";
-  fileInput.accept = "image/*";
-  fileInput.style.display = "";
-  document.body.appendChild(fileInput);
-
-  selectFileText.addEventListener("click", () => fileInput.click());
+  dropZone.addEventListener("click", () => fileInput.click());
 
   fileInput.addEventListener("change", (event) => {
     const file = event.target.files[0];
@@ -30,11 +22,8 @@ function setupImagePreview(id) {
         img.onload = () => {
           imagePreview.style.backgroundImage = `url(${e.target.result})`;
           imagePreview.style.backgroundSize = "cover";
-          modalImagePreview.style.backgroundImage = `url(${e.target.result})`;
-          modalImagePreview.style.backgroundSize = "cover";
           placeholderText.style.display = "none";
-          document.getElementById(`placeholder-text-${id}-modal`).style.display = "none";
-          imageSize.textContent = `${img.width}px x ${img.height}px`; // แสดงขนาดภาพในพิกเซล
+          imageSize.textContent = `ขนาดภาพ: ${img.width}px x ${img.height}px`; // แสดงขนาดภาพในพิกเซล
         };
         img.src = e.target.result;
       };
@@ -42,40 +31,19 @@ function setupImagePreview(id) {
     }
   });
 
-  imageUrlInput.addEventListener("input", (event) => {
-    const imageUrl = event.target.value;
-    if (imageUrl) {
-      const img = new Image();
-      img.onload = () => {
-        imagePreview.style.backgroundImage = `url(${imageUrl})`;
-        imagePreview.style.backgroundSize = "cover";
-        modalImagePreview.style.backgroundImage = `url(${imageUrl})`;
-        modalImagePreview.style.backgroundSize = "cover";
-        placeholderText.style.display = "none";
-        document.getElementById(`placeholder-text-${id}-modal`).style.display = "none";
-        imageSize.textContent = `${img.width}px x ${img.height}px`; // แสดงขนาดภาพในพิกเซล
-      };
-      img.src = imageUrl;
-    }
-    charCount.textContent = `จำนวนตัวอักษร: ${imageUrl.length}/255`; // นับจำนวนตัวอักษรในลิงก์
-  });
-
   dropZone.addEventListener("dragover", (event) => {
     event.preventDefault();
     dropZone.classList.add("bg-blue-200", "shadow-lg", "border-white");
-    placeholderText.style.color = "white";
   });
 
   dropZone.addEventListener("dragleave", (event) => {
     event.preventDefault();
     dropZone.classList.remove("bg-blue-200", "shadow-lg", "border-white");
-    placeholderText.style.color = "";
   });
 
   dropZone.addEventListener("drop", (event) => {
     event.preventDefault();
     dropZone.classList.remove("bg-blue-200", "shadow-lg", "border-white");
-    placeholderText.style.color = "";
 
     const file = event.dataTransfer.files[0];
     if (file && file.type.startsWith("image/")) {
@@ -89,11 +57,8 @@ function setupImagePreview(id) {
         img.onload = () => {
           imagePreview.style.backgroundImage = `url(${e.target.result})`;
           imagePreview.style.backgroundSize = "cover";
-          modalImagePreview.style.backgroundImage = `url(${e.target.result})`;
-          modalImagePreview.style.backgroundSize = "cover";
           placeholderText.style.display = "none";
-          document.getElementById(`placeholder-text-${id}-modal`).style.display = "none";
-          imageSize.textContent = `${img.width}px x ${img.height}px`; // แสดงขนาดภาพในพิกเซล
+          imageSize.textContent = `ขนาดภาพ: ${img.width}px x ${img.height}px`; // แสดงขนาดภาพในพิกเซล
         };
         img.src = e.target.result;
       };
@@ -101,20 +66,24 @@ function setupImagePreview(id) {
     }
   });
 
-  // ฟังก์ชันการทำงานสำหรับปุ่มถังขยะ
   deleteBtn.addEventListener("click", () => {
     imagePreview.style.backgroundImage = "";
-    modalImagePreview.style.backgroundImage = "";
     placeholderText.style.display = "flex";
-    document.getElementById(`placeholder-text-${id}-modal`).style.display = "flex";
-    imageUrlInput.value = ''; // ล้างลิงก์ที่วางไว้
+    fileInput.value = ''; // ล้างไฟล์ที่เลือก
     charCount.textContent = ''; // ล้างจำนวนตัวอักษร
     imageSize.textContent = ''; // ล้างขนาดของภาพ
+  });
+
+  // เพิ่มการนับตัวอักษรในลิงก์
+  fileInput.addEventListener("input", (event) => {
+    const imageUrl = event.target.value;
+    charCount.textContent = `จำนวนตัวอักษร: ${imageUrl.length}`; // นับจำนวนตัวอักษรในลิงก์
   });
 }
 
 // เรียกใช้ฟังก์ชันสำหรับแต่ละส่วน
 ["A", "B", "C", "D", "E"].forEach((id) => setupImagePreview(id));
+
 
 document.addEventListener('DOMContentLoaded', function () {
   const modal = document.getElementById('modal');
