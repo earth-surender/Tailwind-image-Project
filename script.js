@@ -160,25 +160,24 @@ function setupImagePreview(id) {
 ["A", "B", "C", "D", "E"].forEach((id) => setupImagePreview(id));
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  const modal = document.getElementById('modal');
-  const openModalButton = document.getElementById('openModalButton');
-  const closeModalButton = document.getElementById('closeModalBtn');
-
-  // เปิด Modal
-  openModalButton.addEventListener('click', function () {
-    modal.classList.remove('hidden-modal');
-  });
-
-  // ปิด Modal
-  closeModalButton.addEventListener('click', function () {
-    modal.classList.add('hidden-modal');
-  });
-
-  // ปิด Modal เมื่อคลิกนอกพื้นที่ Modal
+document.addEventListener('DOMContentLoaded', function () { 
+  const modal = document.getElementById('modal'); 
+  const openModalButton = document.getElementById('openModalButton'); 
+  const closeModalButton = document.getElementById('closeModalBtn'); 
+  
+  // เปิด Modal 
+  openModalButton.addEventListener('click', function () { 
+    modal.classList.remove('hidden-modal'); 
+  }); 
+  
+  // ปิด Modal 
+  closeModalButton.addEventListener('click', function () { 
+    modal.classList.add('hidden-modal'); 
+  }); 
+  
+  // ปิด Modal เมื่อคลิกนอกพื้นที่ Modal 
   modal.addEventListener('click', function (event) {
-    if (event.target === modal) {
-      modal.classList.add('hidden-modal');
-    }
-  });
+    if (event.target === modal) { modal.classList.add('hidden-modal'); 
+     } 
+  }); 
 });
