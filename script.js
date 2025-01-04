@@ -15,15 +15,13 @@ function setupImagePreview(id) {
 
   dropZone.addEventListener("click", () => fileInput.click());
 
-fileInput.addEventListener("change", (event) => { 
-  const file = event.target.files[0]; 
-  if (!file.type.startsWith("image/")) { 
-    alert("!ไฟล์ไม่ถูกต้อง"); 
-    return; 
-  }
-  
   fileInput.addEventListener("change", (event) => {
     const file = event.target.files[0];
+    if (!file.type.startsWith("image/")) {
+      alert("ไฟล์ไม่ถูกต้อง");
+      return;
+    }
+
     if (file && file.type.startsWith("image/")) {
       const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2); // แปลงขนาดไฟล์เป็น MB
       fileSize.textContent = `ขนาดไฟล์: ${fileSizeMB} MB`; // แสดงขนาดไฟล์
@@ -102,6 +100,11 @@ fileInput.addEventListener("change", (event) => {
     placeholderDropText.style.color = "";
 
     const file = event.dataTransfer.files[0];
+    if (!file.type.startsWith("image/")) {
+      alert("ไฟล์ไม่ถูกต้อง");
+      return;
+    }
+
     if (file && file.type.startsWith("image/")) {
       const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2); // แปลงขนาดไฟล์เป็น MB
       fileSize.textContent = `ขนาดไฟล์ ${fileSizeMB} MB`; // แสดงขนาดไฟล์
