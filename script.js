@@ -42,7 +42,7 @@ function setupImagePreview(id) {
   dropZone.addEventListener("dragleave", (event) => {
     event.preventDefault();
     dropZone.classList.remove("bg-blue-200", "shadow-lg", "border-white");
-    placeholderDropText.textContent = ""; // กลับสู่คำเดิมเมื่อออกจาก drop zone
+    placeholderDropText.textContent = "คลิกเพื่อเลือกไฟล์"; // กลับสู่คำเดิมเมื่อออกจาก drop zone
     placeholderDropText.style.color = ""; // กลับสู่สีตัวหนังสือเดิม
   });
 
