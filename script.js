@@ -26,10 +26,12 @@ function setupImagePreview(id) {
           imagePreview.style.backgroundImage = `url(${e.target.result})`;
           imagePreview.style.backgroundSize = "contain";
           imagePreview.style.backgroundRepeat = "no-repeat";
+          imagePreview.style.backgroundColor = "white";
           
           modalImagePreview.style.backgroundImage = `url(${e.target.result})`; // แสดงภาพใน modal
           modalImagePreview.style.backgroundSize = "contain";
           modalImagePreview.style.backgroundRepeat = "no-repeat";
+          modalImagePreview.style.backgroundColor = "white";
           
           placeholderText.style.display = "none";
           modalPlaceholderText.style.display = "none";
@@ -74,9 +76,13 @@ function setupImagePreview(id) {
           imagePreview.style.backgroundImage = `url(${e.target.result})`;
           imagePreview.style.backgroundSize = "contain";
           imagePreview.style.backgroundRepeat = "no-repeat";
+          imagePreview.style.backgroundColor = "white";
+          
           modalImagePreview.style.backgroundImage = `url(${e.target.result})`; // แสดงภาพใน modal
           modalImagePreview.style.backgroundSize = "contain";
           modalImagePreview.style.backgroundRepeat = "no-repeat";
+          modalImagePreview.style.backgroundColor = "white";
+          
           placeholderText.style.display = "none";
           modalPlaceholderText.style.display = "none";
           imageSize.textContent = `ขนาดภาพ: ${img.width}px x ${img.height}px`; // แสดงขนาดภาพในพิกเซล
