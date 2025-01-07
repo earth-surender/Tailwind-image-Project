@@ -13,14 +13,14 @@ function setupImagePreview(id) {
   const deleteBtn = document.getElementById(`delete-${id}`);
   const checkboxDel = document.getElementById(`check-del-${id}`);
 
-// ตรวจสอบว่ามีองค์ประกอบทั้งหมดหรือไม่ 
-  if (!dropZone || !fileInput || !imagePreview || !placeholderDropText || !placeholderText || 
-      !modalImagePreview || !modalPlaceholderText || !charCount || !imageSize || 
-      !fileSize || !imageUrlInput || !deleteBtn || !checkboxDel) { 
-    console.error(`ไม่พบองค์ประกอบ HTML สำหรับ ID: ${id}`); 
-    return; 
+  // ตรวจสอบว่ามีองค์ประกอบทั้งหมดหรือไม่
+  if (!dropZone || !fileInput || !imagePreview || !placeholderDropText || !placeholderText ||
+      !modalImagePreview || !modalPlaceholderText || !charCount || !imageSize ||
+      !fileSize || !imageUrlInput || !deleteBtn || !checkboxDel) {
+    console.error(`ไม่พบองค์ประกอบ HTML สำหรับ ID: ${id}`);
+    return;
   }
-  
+
   dropZone.addEventListener("click", () => fileInput.click());
 
   fileInput.addEventListener("change", (event) => {
@@ -97,7 +97,7 @@ function setupImagePreview(id) {
   dropZone.addEventListener("dragleave", (event) => {
     event.preventDefault();
     dropZone.classList.remove("bg-blue-200", "shadow-lg", "border-white");
-    placeholderDropText.textContent = "วางไฟล์ที่นี่หรือคลิกเพื่อเลือกไฟล์";
+    placeholderDropText.textContent = "คลิกเพื่อเลือกไฟล์";
     placeholderDropText.style.color = "";
   });
 
