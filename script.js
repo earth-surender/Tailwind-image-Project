@@ -12,12 +12,11 @@ function setupImagePreview(id) {
   const imageUrlInput = document.getElementById(`image-url-${id}`);
   const deleteBtn = document.getElementById(`delete-${id}`);
   const checkboxDel = document.getElementById(`check-del-${id}`);
-  const selectFileText = document.getElementById(`select-file-text-${id}`);
 
   // ตรวจสอบว่ามีองค์ประกอบทั้งหมดหรือไม่
   if (!dropZone || !fileInput || !imagePreview || !placeholderDropText || !placeholderText ||
       !modalImagePreview || !modalPlaceholderText || !charCount || !imageSize ||
-      !fileSize || !imageUrlInput || !deleteBtn || !checkboxDel || !selectFileText) {
+      !fileSize || !imageUrlInput || !deleteBtn || !checkboxDel) {
     console.error(`ไม่พบองค์ประกอบ HTML สำหรับ ID: ${id}`);
     return;
   }
@@ -34,7 +33,6 @@ function setupImagePreview(id) {
     if (file && file.type.startsWith("image/")) {
       const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
       fileSize.textContent = `ขนาดไฟล์: ${fileSizeMB} MB`;
-      selectFileText.textContent = file.name; // แสดงชื่อไฟล์ที่เลือก
 
       if (file.size > 2 * 1024 * 1024) {
         alert("ไฟล์มีขนาดใหญ่เกิน 2MB");
@@ -99,7 +97,7 @@ function setupImagePreview(id) {
   dropZone.addEventListener("dragleave", (event) => {
     event.preventDefault();
     dropZone.classList.remove("bg-blue-200", "shadow-lg", "border-white");
-    placeholderDropText.textContent = "วางไฟล์ที่นี่หรือคลิกเพื่อเลือกไฟล์";
+    placeholderDropText.textContent = "คลิกเพื่อเลือกไฟล์";
     placeholderDropText.style.color = "";
   });
 
@@ -118,7 +116,6 @@ function setupImagePreview(id) {
     if (file && file.type.startsWith("image/")) {
       const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
       fileSize.textContent = `ขนาดไฟล์ ${fileSizeMB} MB`;
-      selectFileText.textContent = file.name; // แสดงชื่อไฟล์ที่เลือก
 
       if (file.size > 2 * 1024 * 1024) {
         alert("ไฟล์มีขนาดใหญ่เกิน 2MB");
@@ -169,7 +166,6 @@ function setupImagePreview(id) {
     imageSize.textContent = '';
     checkboxDel.innerHTML = '<i class="fa-solid fa-check"></i>';
     checkboxDel.style.backgroundColor = "#67a9f8";
-    selectFileText.textContent = ""; // ล้างชื่อไฟล์เมื่อกดลบ
   });
 }
 
