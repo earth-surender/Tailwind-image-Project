@@ -8,15 +8,16 @@ function setupImagePreview(id) {
   const modalPlaceholderText = document.getElementById(`placeholder-text-${id}-modal`);
   const charCount = document.getElementById(`char-count-${id}`);
   const imageSize = document.getElementById(`image-size-${id}`);
-  const fileSize = document.getElementById(`file-size-${id}`); // ข้อความแสดงขนาดไฟล์
-  const imageUrlInput = document.getElementById(`image-url-${id}`); // input สำหรับ image URL
+  const fileSize = document.getElementById(`file-size-${id}`);
+  const imageUrlInput = document.getElementById(`image-url-${id}`);
   const deleteBtn = document.getElementById(`delete-${id}`);
   const checkboxDel = document.getElementById(`check-del-${id}`);
+  const selectFileText = document.getElementById(`select-file-text-${id}`);
 
   // ตรวจสอบว่ามีองค์ประกอบทั้งหมดหรือไม่
   if (!dropZone || !fileInput || !imagePreview || !placeholderDropText || !placeholderText ||
       !modalImagePreview || !modalPlaceholderText || !charCount || !imageSize ||
-      !fileSize || !imageUrlInput || !deleteBtn || !checkboxDel) {
+      !fileSize || !imageUrlInput || !deleteBtn || !checkboxDel || !selectFileText) {
     console.error(`ไม่พบองค์ประกอบ HTML สำหรับ ID: ${id}`);
     return;
   }
@@ -31,8 +32,9 @@ function setupImagePreview(id) {
     }
 
     if (file && file.type.startsWith("image/")) {
-      const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2); // แปลงขนาดไฟล์เป็น MB
-      fileSize.textContent = `ขนาดไฟล์: ${fileSizeMB} MB`; // แสดงขนาดไฟล์
+      const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+      fileSize.textContent = `ขนาดไฟล์: ${fileSizeMB} MB`;
+      selectFileText.textContent = file.name; // แสดงชื่อไฟล์ที่เลือก
 
       if (file.size > 2 * 1024 * 1024) {
         alert("ไฟล์มีขนาดใหญ่เกิน 2MB");
@@ -44,18 +46,18 @@ function setupImagePreview(id) {
         const img = new Image();
         img.onload = () => {
           imagePreview.style.backgroundImage = `url(${e.target.result})`;
-          imagePreview.style.backgroundSize = "contain"; // เปลี่ยนเป็น contain
-          imagePreview.style.backgroundRepeat = "no-repeat"; // ไม่ทำการทำซ้ำ
+          imagePreview.style.backgroundSize = "contain";
+          imagePreview.style.backgroundRepeat = "no-repeat";
           imagePreview.style.backgroundColor = "white";
           
-          modalImagePreview.style.backgroundImage = `url(${e.target.result})`; // แสดงภาพใน modal
-          modalImagePreview.style.backgroundSize = "contain"; // เปลี่ยนเป็น contain
-          modalImagePreview.style.backgroundRepeat = "no-repeat"; // ไม่ทำการทำซ้ำ
+          modalImagePreview.style.backgroundImage = `url(${e.target.result})`;
+          modalImagePreview.style.backgroundSize = "contain";
+          modalImagePreview.style.backgroundRepeat = "no-repeat";
           modalImagePreview.style.backgroundColor = "white";
           
           placeholderText.style.display = "none";
           modalPlaceholderText.style.display = "none";
-          imageSize.textContent = `ขนาดภาพ: ${img.width}px x ${img.height}px`; // แสดงขนาดภาพในพิกเซล
+          imageSize.textContent = `ขนาดภาพ: ${img.width}px x ${img.height}px`;
         };
         img.src = e.target.result;
       };
@@ -65,24 +67,24 @@ function setupImagePreview(id) {
 
   imageUrlInput.addEventListener("input", (event) => {
     const imageUrl = event.target.value;
-    charCount.textContent = `จำนวนตัวอักษร: ${imageUrl.length}`; // นับจำนวนตัวอักษรในลิงก์
+    charCount.textContent = `จำนวนตัวอักษร: ${imageUrl.length}`;
 
     const img = new Image();
     img.onload = () => {
       imagePreview.style.backgroundImage = `url(${imageUrl})`;
-      imagePreview.style.backgroundSize = "contain"; // เปลี่ยนเป็น contain
-      imagePreview.style.backgroundRepeat = "no-repeat"; // ไม่ทำการทำซ้ำ
+      imagePreview.style.backgroundSize = "contain";
+      imagePreview.style.backgroundRepeat = "no-repeat";
       imagePreview.style.backgroundColor = "white";
 
-      modalImagePreview.style.backgroundImage = `url(${imageUrl})`; // แสดงภาพใน modal
-      modalImagePreview.style.backgroundSize = "contain"; // เปลี่ยนเป็น contain
-      modalImagePreview.style.backgroundRepeat = "no-repeat"; // ไม่ทำการทำซ้ำ
+      modalImagePreview.style.backgroundImage = `url(${imageUrl})`;
+      modalImagePreview.style.backgroundSize = "contain";
+      modalImagePreview.style.backgroundRepeat = "no-repeat";
       modalImagePreview.style.backgroundColor = "white";
 
       placeholderText.style.display = "none";
       modalPlaceholderText.style.display = "none";
 
-      imageSize.textContent = `ขนาดภาพ: ${img.width}px x ${img.height}px`; // แสดงขนาดภาพในพิกเซล
+      imageSize.textContent = `ขนาดภาพ: ${img.width}px x ${img.height}px`;
     };
     img.src = imageUrl;
   });
@@ -97,7 +99,7 @@ function setupImagePreview(id) {
   dropZone.addEventListener("dragleave", (event) => {
     event.preventDefault();
     dropZone.classList.remove("bg-blue-200", "shadow-lg", "border-white");
-    placeholderDropText.textContent = "คลิกเพื่อเลือกไฟล์";
+    placeholderDropText.textContent = "วางไฟล์ที่นี่หรือคลิกเพื่อเลือกไฟล์";
     placeholderDropText.style.color = "";
   });
 
@@ -114,31 +116,37 @@ function setupImagePreview(id) {
     }
 
     if (file && file.type.startsWith("image/")) {
-      const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2); // แปลงขนาดไฟล์เป็น MB
-      fileSize.textContent = `ขนาดไฟล์ ${fileSizeMB} MB`; // แสดงขนาดไฟล์
+      const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+      fileSize.textContent = `ขนาดไฟล์ ${fileSizeMB} MB`;
+      selectFileText.textContent = file.name; // แสดงชื่อไฟล์ที่เลือก
 
       if (file.size > 2 * 1024 * 1024) {
         alert("ไฟล์มีขนาดใหญ่เกิน 2MB");
         return;
       }
 
+      // ใช้งาน dataTransfer ไฟล์กับ input element
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      fileInput.files = dataTransfer.files;
+
       const reader = new FileReader();
       reader.onload = (e) => {
         const img = new Image();
         img.onload = () => {
           imagePreview.style.backgroundImage = `url(${e.target.result})`;
-          imagePreview.style.backgroundSize = "contain"; // เปลี่ยนเป็น contain
-          imagePreview.style.backgroundRepeat = "no-repeat"; // ไม่ทำการทำซ้ำ
+          imagePreview.style.backgroundSize = "contain";
+          imagePreview.style.backgroundRepeat = "no-repeat";
           imagePreview.style.backgroundColor = "white";
 
-          modalImagePreview.style.backgroundImage = `url(${e.target.result})`; // แสดงภาพใน modal
-          modalImagePreview.style.backgroundSize = "contain"; // เปลี่ยนเป็น contain
-          modalImagePreview.style.backgroundRepeat = "no-repeat"; // ไม่ทำการทำซ้ำ
+          modalImagePreview.style.backgroundImage = `url(${e.target.result})`;
+          modalImagePreview.style.backgroundSize = "contain";
+          modalImagePreview.style.backgroundRepeat = "no-repeat";
           modalImagePreview.style.backgroundColor = "white";
 
           placeholderText.style.display = "none";
           modalPlaceholderText.style.display = "none";
-          imageSize.textContent = `ขนาดภาพ: ${img.width}px x ${img.height}px`; // แสดงขนาดภาพในพิกเซล
+          imageSize.textContent = `ขนาดภาพ: ${img.width}px x ${img.height}px`;
         };
         img.src = e.target.result;
       };
@@ -148,26 +156,27 @@ function setupImagePreview(id) {
 
   deleteBtn.addEventListener("click", () => {
     imagePreview.style.backgroundImage = "";
-    modalImagePreview.style.backgroundImage = ""; // ลบภาพใน modal
+    modalImagePreview.style.backgroundImage = "";
     imagePreview.style.backgroundColor = "";
     modalImagePreview.style.backgroundColor = "";
     placeholderText.style.display = "flex";
     modalPlaceholderText.style.display = "flex";
     placeholderDropText.textContent = "คลิกเพื่อเลือกไฟล์";
-    fileSize.textContent = ""; // ลบข้อความขนาดไฟล์เมื่อกดลบ
+    fileSize.textContent = "";
     imageUrlInput.value = "";
     fileInput.value = '';
     charCount.textContent = '0/255 ตัวอักษร';
     imageSize.textContent = '';
     checkboxDel.innerHTML = '<i class="fa-solid fa-check"></i>';
     checkboxDel.style.backgroundColor = "#67a9f8";
+    selectFileText.textContent = ""; // ล้างชื่อไฟล์เมื่อกดลบ
   });
 }
 
 // เรียกใช้ฟังก์ชันสำหรับแต่ละส่วน
 ["A", "B", "C", "D", "E"].forEach((id) => setupImagePreview(id));
 
-
+// ส่วนของ Modal
 document.addEventListener('DOMContentLoaded', function () { 
   const modal = document.getElementById('modal'); 
   const openModalButton = document.getElementById('openModalButton'); 
