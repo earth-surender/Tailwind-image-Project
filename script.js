@@ -166,6 +166,11 @@ function setupImagePreview(id) {
     imageSize.textContent = '';
     checkboxDel.innerHTML = '<i class="fa-solid fa-check"></i>';
     checkboxDel.style.backgroundColor = "#67a9f8";
+
+    checkboxDel.addEventListener("click", () => {
+        checkboxDel.innerHTML = "";
+        checkboxDel.style.backgroundColor = "";
+});
   });
 }
 
